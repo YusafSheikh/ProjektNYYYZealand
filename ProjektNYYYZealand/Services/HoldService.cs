@@ -46,6 +46,11 @@ namespace ProjektNYYYZealand.Services
             return context.Holds;
         }
 
+        public IEnumerable<Hold> GetHold(string holdnavn, string semester, string uddannelse)
+        {
+            return context.Holds;
+        }
+
         public Hold GetHoldById(int Id)
         {
             return context.Holds.Find(Id);

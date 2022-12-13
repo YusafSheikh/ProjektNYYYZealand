@@ -19,5 +19,6 @@ namespace ProjektNYYYZealand.Interfaces
         void UpdateHold(Hold Hold);
 
         public Hold GetHoldById (int Id);
+        IEnumerable<Hold> GetHold(string holdnavn, string semester, string uddannelse);
     }
 }

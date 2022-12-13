@@ -10,10 +10,10 @@ namespace ProjektNYYYZealand.Models
     [Table("Bog")]
     public partial class Bog
     {
-        public Bog()
-        {
-            BogHolds = new HashSet<BogHold>();
-        }
+        //public Bog()
+        //{
+        //    BogHolds = new HashSet<BogHold>();
+        //}
 
         [Key]
         [Column("Bog_id")]
@@ -26,9 +26,9 @@ namespace ProjektNYYYZealand.Models
         [StringLength(256)]
         public string Forfatter { get; set; }
         [Column("ISBN")]
-        public double Isbn { get; set; }
-        [StringLength(256)]
-        public string Billede { get; set; }
+        public int Isbn { get; set; }
+        //[StringLength(256)]
+        //public string Billede { get; set; }
 
         [InverseProperty(nameof(BogHold.Bog))]
         public virtual ICollection<BogHold> BogHolds { get; set; }

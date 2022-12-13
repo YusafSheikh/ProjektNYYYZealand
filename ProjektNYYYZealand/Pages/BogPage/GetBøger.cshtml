@@ -1,7 +1,5 @@
 ﻿@page
-
 @model ProjektNYYYZealand.Pages.BogPage.GetBøgerModel
-
 @{
 
     ViewData["Titel"] = "GetBøger";
@@ -20,13 +18,7 @@
 
         ISBN <input type="text" asp-for="ISBN" />
 
-
-
         <input type="submit" value="Søg her" />
-
-
-
-
 
     </p>
 
@@ -50,7 +42,7 @@
 
         <tr>
 
-            <th>Bog_id</th>
+            <th>Bog_Id</th>
 
             <th>Title</th>
 
@@ -60,8 +52,8 @@
 
             <th>ISBN</th>
 
-            <th>Billede</th>
-
+@*            <th>Billede</th>
+*@
         </tr>
 
     </thead>

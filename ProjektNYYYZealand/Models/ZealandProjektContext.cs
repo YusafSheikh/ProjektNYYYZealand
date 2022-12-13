@@ -36,11 +36,14 @@ namespace ProjektNYYYZealand.Models
         {
             modelBuilder.Entity<Bog>(entity =>
             {
-                entity.Property(e => e.Billede).IsFixedLength();
+                //entity.Property(e => e.Billede).IsFixedLength();
+
+                entity.Property(e => e.BogId).ValueGeneratedNever();
 
                 entity.Property(e => e.Forfatter).IsUnicode(false);
 
                 entity.Property(e => e.Title).IsUnicode(false);
+
             });
 
             modelBuilder.Entity<BogHold>(entity =>

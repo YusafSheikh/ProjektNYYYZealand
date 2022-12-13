@@ -9,10 +9,23 @@ namespace ProjektNYYYZealand.Services
     {
         ZealandProjektContext context;
 
-        public Bog Bog { get; set; }
-        public Bogservice(ZealandProjektContext services)
+        public Bogservice(ZealandProjektContext service)
         {
-            this.context = services;
+            context = service;
+        }
+
+        public IEnumerable<Bog> GetBogs(string Filter)
+        {
+            if (Filter == null)
+            {
+                return context.Bøger;
+            }
+            return context.Set<Bog>().Where(b => b.Title.ToLower().StartsWith(Filter));
+        }
+
+        public IEnumerable<Bog> GetBogs()
+        {
+            return context.Bøger;
         }
 
         public void AddBog(Bog bog)
@@ -21,40 +34,39 @@ namespace ProjektNYYYZealand.Services
             context.SaveChanges();
         }
 
-        public void DeleteBog(Bog bog)
-        {
-            context.Bøger.Remove(bog);
-            context.SaveChanges();
-        }
-
-        public void DeleteBog(int id)
-        {
-            Bog bog =GetBogById(id);
-            context.Bøger.Remove(bog);
-            context.SaveChanges(true);
-        }
-
-        public IEnumerable<Bog> GetBog(string Filter)
-        {
-            if(Filter != null)
-            {
-                return context.Bøger;
-            }
-
-           return context.Set<Bog>().Where(s=>s.Title.StartsWith(Filter));
-            
-            
-        }
-
-        public IEnumerable<Bog> GetBog()
-        {
-           return context.Bøger;
-        }
-
-        public Bog GetBogById(int id)
+        public Bog GetBogById (int id)
         {
             return context.Bøger.Find(id);
         }
+        public void DeleteBog (int id)        
+            {
+            Bog Bog = GetBogById(id);
+            context.Bøger.Remove(Bog);
+            context.SaveChanges(true);
+            } 
+        public void DeleteBog(Bog bog)
+        {
+            context.Bøger.Remove(bog);
+            context.SaveChanges(true);
+        }
+        public IEnumerable<Bog> GetBogs(string Filter, string FilterForfatter, double ISBNFilter)
+        {
+            IEnumerable<Bog> result = context.Bøger;
+            if (Filter != null)
+            {
+                result = result.Where(r => r.Title.ToLower().StartsWith(Filter));
+            }
+            if (FilterForfatter != null)
+            {
+                result = result.Where(r => r.Forfatter.ToLower().StartsWith(FilterForfatter));
+            }
+            if (ISBNFilter != 0)
+            {
+                result = result.Where(r => r.Isbn == ISBNFilter);
+            }
+            return result;
+        }
+
 
         public void UpdateBog(Bog bog)
         {
@@ -62,23 +74,6 @@ namespace ProjektNYYYZealand.Services
             context.SaveChanges();
         }
 
-        public IEnumerable<Bog> GetBog(string Title, string Forfatter, double ISBN)
-        {
-            IEnumerable<Bog> result = context.Bøger;
-            if(Title != null)
-            {
-                result = result.Where(t => t.Title.StartsWith(Title));
-            }
-
-            if(Forfatter != null)
-            {
-                result= result.Where(f=> f.Forfatter.StartsWith(Forfatter));
-            }
-            if(ISBN >= 0)
-            {
-                return context.Set<Bog>().Where(i => i.Isbn == ISBN);
-            }
-            return result;
-        }
+     
     }
-}
+    }

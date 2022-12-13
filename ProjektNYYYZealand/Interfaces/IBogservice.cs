@@ -6,11 +6,11 @@ namespace ProjektNYYYZealand.Interfaces
 {
     public interface IBogservice
     {
-        public IEnumerable<Bog> GetBog(string Filter);
-
-        public IEnumerable<Bog> GetBog();
+        public IEnumerable<Bog> GetBogs(string Filter);
+        public IEnumerable<Bog> GetBogs(string Filter, string FilterForfatter, double ISBNFilter);
 
         void AddBog(Bog bog);
+        Bog GetBogById(int id);
 
         void DeleteBog(Bog bog);
 
@@ -18,8 +18,5 @@ namespace ProjektNYYYZealand.Interfaces
 
         void UpdateBog(Bog bog);    
 
-        Bog GetBogById(int id);
-
-        public IEnumerable<Bog> GetBog(string Title, string Forfatter, double ISBN);
     }
 }

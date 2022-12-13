@@ -40,7 +40,7 @@ namespace ProjektNYYYZealand.Services
         public IEnumerable<Underviser> GetUndervisers(string Filter)
         {
             {
-                if (Filter != null)
+                if (Filter == null)
                 {
                     return context.Undervisers;
                 }
